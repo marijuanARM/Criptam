@@ -48,6 +48,10 @@ class Device(object):
             return False
 
     def get_wiki_template(self):
+        pre_a4_devices = ['iPod3,1', 'iPhone2,1', 'iPod2,1', 'iPod1,1', 'iPhone1,1', 'iPhone1,2']
+        a4_devices = ['AppleTV2,1', 'iPad1,1', 'iPhone3,1', 'iPhone3,2', 'iPhone3,3', 'iPod4,1']
+        a5_devices = ['iPad2,1', 'iPad2,2', 'iPad2,3', 'iPad2,4', 'iPhone4,1', 'AppleTV3,1', 'iPod5,1', 'iPad2,5', 'iPad2,6', 'iPad2,7', 'iPad3,1', 'iPad3,2', 'iPad3,3', 'AppleTV3,2']
+        a6_devices = ['iPhone5,1', 'iPhone5,2', 'iPhone5,3', 'iPhone5,4', 'iPad3,4', 'iPad3,5', 'iPad3,6']
         a7_devices = ['iPad4,1', 'iPad4,2', 'iPad4,3', 'iPad4,4', 'iPad4,5', 'iPad4,6', 'iPad4,7', 'iPad4,8', 'iPad4,9', 'iPhone6,1', 'iPhone6,2']
         a8_devices = ['iPad5,1', 'iPad5,2', 'iPad5,3', 'iPad5,4', 'iPhone7,1', 'iPhone7,2', 'iPod7,1']
         a9_devices = ['iPad6,11', 'iPad6,12', 'iPad6,3', 'iPad6,4', 'iPad6,7', 'iPad6,8', 'iPhone8,1', 'iPhone8,2', 'iPhone8,4']
@@ -55,6 +59,15 @@ class Device(object):
         a11_devices = ['iPhone10,1', 'iPhone10,2', 'iPhone10,4', 'iPhone10,5', 'iPhone10,3', 'iPhone10,6']
 
         self.required_components = {}
+
+        if self.device in pre_a4_devices or self.device in a4_devices or self.device in a5_devices or self.device in a6_devices:
+            if self.cellular:
+                wiki_template = 'resources/templates/32bit_cellular.txt'
+            else:
+                wiki_template = 'resources/templates/32bit_nocellular.txt'
+
+            if self.version[:2] == '10':
+                wiki_template = f'{wiki_template[:-4]}_ios10.txt'
 
         if self.device in a7_devices or self.device in a8_devices:
             if self.cellular:

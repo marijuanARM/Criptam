@@ -1,0 +1,79 @@
+{{keys
+ | Version               = {VERSION}
+ | Build                 = {BUILDID}
+ | Device                = {DEVICEIDENTIFIER}
+ | Codename              = {CODENAME}
+ | Baseband              = {BASEBANDVER}
+ | DownloadURL           = {URL}
+
+ | RootFS                = {ROOTFS}
+ | RootFSKey             = {ROOTFSKEY}
+
+ | UpdateRamdisk         = {UPDATERAMDISK}
+ | UpdateRamdiskIV       = {UPDATERAMDISKIV}
+ | UpdateRamdiskKey      = {UPDATERAMDISKKEY}
+
+ | RestoreRamdisk        = {RESTORERAMDISK}
+ | RestoreRamdiskIV      = {RESTORERAMDISKIV}
+ | RestoreRamdiskKey     = {RESTORERAMDISKKEY}
+
+ | AppleLogo             = {APPLELOGO}
+ | AppleLogoIV           = {APPLELOGOIV}
+ | AppleLogoKey          = {APPLELOGOKEY}
+
+ | BatteryCharging0      = {BATTERYCHARGING0}
+ | BatteryCharging0IV    = {BATTERYCHARGING0IV}
+ | BatteryCharging0Key   = {BATTERYCHARGING0KEY}
+
+ | BatteryCharging1      = {BATTERYCHARGING1}
+ | BatteryCharging1IV    = {BATTERYCHARGING1IV}
+ | BatteryCharging1Key   = {BATTERYCHARGING1KEY}
+
+ | BatteryFull           = {BATTERYFULL}
+ | BatteryFullIV         = {BATTERYFULLIV}
+ | BatteryFullKey        = {BATTERYFULLKEY}
+
+ | BatteryLow0           = {BATTERYLOW0}
+ | BatteryLow0IV         = {BATTERYLOW0IV}
+ | BatteryLow0Key        = {BATTERYLOW0KEY}
+
+ | BatteryLow1           = {BATTERYLOW1}
+ | BatteryLow1IV         = {BATTERYLOW1IV}
+ | BatteryLow1Key        = {BATTERYLOW1KEY}
+
+ | DeviceTree            = {DEVICETREE}
+ | DeviceTreeIV          = {DEVICETREEIV}
+ | DeviceTreeKey         = {DEVICETREEKEY}
+
+ | GlyphCharging         = {GLYPHCHARGING}
+ | GlyphChargingIV       = {GLYPHCHARGINGIV}
+ | GlyphChargingKey      = {GLYPHCHARGINGKEY}
+
+ | GlyphPlugin           = {GLYPHPLUGIN}
+ | GlyphPluginIV         = {GLYPHPLUGINIV}
+ | GlyphPluginKey        = {GLYPHPLUGINKEY}
+
+ | iBEC                  = {IBEC}
+ | iBECIV                = {IBECIV}
+ | iBECKey               = {IBECKEY}
+
+ | iBoot                 = {IBOOT}
+ | iBootIV               = {IBOOTIV}
+ | iBootKey              = {IBOOTKEY}
+
+ | iBSS                  = {IBSS}
+ | iBSSIV                = {IBSSIV}
+ | iBSSKey               = {IBSSKEY}
+
+ | Kernelcache           = {KERNELCACHE}
+ | KernelcacheIV         = {KERNELCACHEIV}
+ | KernelcacheKey        = {KERNELCACHEKEY}
+
+ | LLB                   = {LLB}
+ | LLBIV                 = {LLBIV}
+ | LLBKey                = {LLBKEY}
+
+ | RecoveryMode          = {RECOVERYMODE}
+ | RecoveryModeIV        = {RECOVERYMODEIV}
+ | RecoveryModeKey       = {RECOVERYMODEKEY}
+}}

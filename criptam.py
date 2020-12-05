@@ -69,8 +69,8 @@ def main():
         if args.version and version != args.version[0]:
             continue
 
-        if version.startswith('7') or version.startswith('8') or version.startswith('9'):
-            sys.exit('[ERROR] Decrypting pre-iOS 10 version are not supported yet. Exiting...')
+        if version.startswith('1.') or version.startswith('2') or version.startswith('3') or version.startswith('4') or version.startswith('11') or version.startswith('12') or version.startswith('13') or version.startswith('14'): # blocking iOS 1-4 because different components across different devices are decrypted, so i don't wanna bother parsing that
+            sys.exit(f'[ERROR] iOS {version} is not supported. Exiting...')
 
         template = device.Device(args.device[0], version)
         wiki_template = template.template
