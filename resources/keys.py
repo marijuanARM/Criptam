@@ -11,31 +11,29 @@ class Keys(object):
         self.device = device_identifier
         self.components = components
         self.platform = platform
-        self.img4_check()
+        self.xpwn_check()
 
-    def img4_check(self):
-        img4_check = subprocess.run(('which', 'img4'), stdout=subprocess.PIPE, universal_newlines=True)
-        if img4_check.returncode != 0:
-            sys.exit("[ERROR] img4lib not installed! If img4lib is installed, make sure the 'img4' binary is in a directory on your PATH. Exiting...")
+    def xpwn_check(self):
+        xpwn_check = subprocess.run(('which', 'xpwntool'), stdout=subprocess.PIPE, universal_newlines=True)
+        if xpwn_check.returncode != 0:
+            sys.exit("[ERROR] xpwn not installed! If xpwn is installed, make sure the 'xpwntool' binary is in a directory on your PATH. Exiting...")
 
     def decrypt_keys(self):
-        ibss_img4 = subprocess.run(('img4', '-i', f'.tmp/mass-decryptor/{self.components["ibss"]["file"]}', '-b'), stdout=subprocess.PIPE, universal_newlines=True)
-        ibec_img4 = subprocess.run(('img4', '-i', f'.tmp/mass-decryptor/{self.components["ibec"]["file"]}', '-b'), stdout=subprocess.PIPE, universal_newlines=True)
-        llb_img4 = subprocess.run(('img4', '-i', f'.tmp/mass-decryptor/{self.components["llb"]["file"]}', '-b'), stdout=subprocess.PIPE, universal_newlines=True)
-        iboot_img4 = subprocess.run(('img4', '-i', f'.tmp/mass-decryptor/{self.components["iboot"]["file"]}', '-b'), stdout=subprocess.PIPE, universal_newlines=True)
-        sep_img4 = subprocess.run(('img4', '-i', f'.tmp/mass-decryptor/{self.components["sep"]["file"]}', '-b'), stdout=subprocess.PIPE, universal_newlines=True)
+        ibss_img4 = subprocess.run(('xpwntool', f'.tmp/mass-decryptor/{self.components["ibss"]["file"]}', '/dev/null'), stdout=subprocess.PIPE, universal_newlines=True)
+        ibec_img4 = subprocess.run(('xpwntool', f'.tmp/mass-decryptor/{self.components["ibec"]["file"]}', '/dev/null'), stdout=subprocess.PIPE, universal_newlines=True)
+        llb_img4 = subprocess.run(('xpwntool', f'.tmp/mass-decryptor/{self.components["llb"]["file"]}', '/dev/null'), stdout=subprocess.PIPE, universal_newlines=True)
+        iboot_img4 = subprocess.run(('xpwntool', f'.tmp/mass-decryptor/{self.components["iboot"]["file"]}', '/dev/null'), stdout=subprocess.PIPE, universal_newlines=True)
             
-        for x in (ibss_img4, ibec_img4, llb_img4, iboot_img4, sep_img4):
+        for x in (ibss_img4, ibec_img4, llb_img4, iboot_img4):
             if x.returncode != 0:
                 sys.exit('[ERROR] Failed to get kbag from firmware image. Exiting...')
     
         keys = {}
         
-        ibss_kbag = ibss_img4.stdout.split('\n')[0]
-        ibec_kbag = ibec_img4.stdout.split('\n')[0]
-        llb_kbag = llb_img4.stdout.split('\n')[0]
-        iboot_kbag = iboot_img4.stdout.split('\n')[0]
-        sep_kbag = sep_img4.stdout.split('\n')[0].lower()
+        ibss_kbag = ibss_img4.stdout.split(' ')[1]
+        ibec_kbag = ibec_img4.stdout.split(' ')[1]
+        llb_kbag = llb_img4.stdout.split(' ')[1]
+        iboot_kbag = iboot_img4.stdout.split(' ')[1]
     
         os.chdir('resources/ipwndfu')
 
@@ -54,7 +52,6 @@ class Keys(object):
         keys['ibec'] = {"kbag": ibec_decrypt.stdout.split('\n')[1], "key": ibec_decrypt.stdout.split('\n')[1][-64:], "iv": ibec_decrypt.stdout.split('\n')[1][:32]}
         keys['iboot'] = {"kbag": iboot_decrypt.stdout.split('\n')[1], "key": iboot_decrypt.stdout.split('\n')[1][-64:], "iv": iboot_decrypt.stdout.split('\n')[1][:32]}
         keys['llb'] = {"kbag": llb_decrypt.stdout.split('\n')[1], "key": llb_decrypt.stdout.split('\n')[1][-64:], "iv": llb_decrypt.stdout.split('\n')[1][:32]}
-        keys['sep'] = {"kbag": sep_img4.stdout.split('\n')[0].lower(), "key": 'Unknown', "iv": 'Unknown'}
 
         self.keys = keys
 
